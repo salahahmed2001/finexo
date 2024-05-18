@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { Fragment, useEffect } from 'react';
+import { Routes,Route } from 'react-router-dom';
 import './App.css';
-
+import'./normalize.css'
+import HomeComp from './Components/HomeComp';
+import AboutComp from './Components/AboutComp';
+import NavbarComp from './Components/NavbarComp';
+import ServicesComp from './Components/ServicesComp';
+import WhyUsComp from './Components/WhyUsComp';
+import TeamComp from './Components/TeamComp';
+import FooterComp from './Components/FooterComp';
+import BtnBackComp from './Components/BtnBackComp';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import NotFound from './Components/NotFound';
 function App() {
+  useEffect(()=>{
+    Aos.init();
+  })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Fragment>
+    <NavbarComp/>
+    <Routes>
+      <Route path='/' element={<HomeComp />} />
+      <Route path='/About' element={<AboutComp />} />
+      <Route path='/Services' element={<ServicesComp />} />
+      <Route path='/WhyUs' element={<WhyUsComp />} />
+      <Route path='/Team' element={<TeamComp />} />
+      <Route path='/*' element={<NotFound />}  />
+    </Routes>
+    <FooterComp/>
+    <BtnBackComp/>
+   </Fragment>
   );
 }
 
